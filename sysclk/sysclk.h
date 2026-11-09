@@ -151,56 +151,74 @@ struct pllCfg_t {
     uint8       divR = 0;                   // PLL output R division factor. Allowed range 2-8. Set 0 to disable R output
 };
 
+struct sysClkAll_t {
+    uint32 lsiFreqHz;
+    uint32 lseFreqHz;
+    uint32 hsi16FreqHz;
+    uint32 hse32FreqHz;
+    uint32 msiFreqHz;
+    uint32 pllPFreqHz;
+    uint32 pllQFreqHz;
+    uint32 pllRFreqHz;
+    uint32 hclk1FreqHz;
+    uint32 hclk3FreqHz;
+    uint32 pclk1FreqHz;
+    uint32 pclk2FreqHz;
+    uint32 pclk3FreqHz;
+    uint32 systickFreqHz;
+};
+
 /******************************************************************************************************************************************
                                                                     API
 ******************************************************************************************************************************************/
 
-Exec  SysClkSetSrc(sysClkSrc_t clkSrc);
-uint32  SysClkGetFreqHz(sysClk_t sysClk);
+Exec SysClkSetSrc(sysClkSrc_t clkSrc);
+uint32 SysClkGetFreqHz(sysClk_t sysClk);
+sysClkAll_t SysClkGetAll();
 
-Exec  LsiClkEnable();
-Exec  LsiClkDisable();
-State   LsiClkGetState();
+Exec LsiClkEnable();
+Exec LsiClkDisable();
+State LsiClkGetState();
 
-Exec  LseClkEnable();
-Exec  LseClkDisable();
-Exec  LseClkSysEnable();
-State   LseClkGetState();
+Exec LseClkEnable();
+Exec LseClkDisable();
+Exec LseClkSysEnable();
+State LseClkGetState();
 
-Exec  Hse32ClkEnable();
-Exec  Hse32ClkDisable();
-void    Hse32ClkSetPresc(hse32Presc_t presc);
-State   Hse32ClkGetState();
+Exec Hse32ClkEnable();
+Exec Hse32ClkDisable();
+void Hse32ClkSetPresc(hse32Presc_t presc);
+State Hse32ClkGetState();
 
-Exec  MsiClkEnable();
-Exec  MsiClkDisable();
-State   MsiClkGetState();
+Exec MsiClkEnable();
+Exec MsiClkDisable();
+State MsiClkGetState();
 
-Exec  Hsi16ClkEnable();
-Exec  Hsi16ClkDisable();
-State   Hsi16ClkGetState();
+Exec Hsi16ClkEnable();
+Exec Hsi16ClkDisable();
+State Hsi16ClkGetState();
 
-Exec  PllClkEnable(pllCfg_t& config);
-State   PllClkGetState(pllClk_t clk);
+Exec PllClkEnable(pllCfg_t& config);
+State PllClkGetState(pllClk_t clk);
 
-void    RtcClkSrcSelect(rtcClkSrc_t clkSrc);
+void RtcClkSrcSelect(rtcClkSrc_t clkSrc);
 
-void    UsartClkSrcSelect(hal::usartNum_t usartNum, usartClkSrc_t clkSrc);
-uint32  UsartClkGetFreqHz(hal::usartNum_t usartNum);
+void UsartClkSrcSelect(hal::usartNum_t usartNum, usartClkSrc_t clkSrc);
+uint32 UsartClkGetFreqHz(hal::usartNum_t usartNum);
 
-void    I2cClkSrcSelect(hal::i2cNum_t i2cNum, i2cClkSrc_t clkSrc);
-uint32  I2cClkGetFreqHz(hal::i2cNum_t i2cNum);
+void I2cClkSrcSelect(hal::i2cNum_t i2cNum, i2cClkSrc_t clkSrc);
+uint32 I2cClkGetFreqHz(hal::i2cNum_t i2cNum);
 
-void    AdcClkSrcSelect(adcClkSrc_t clkSrc);
-uint32  AdcClkGetFreqHz();
+void AdcClkSrcSelect(adcClkSrc_t clkSrc);
+uint32 AdcClkGetFreqHz();
 
-Exec  RngClkSrcSelect(rngClkSrc_t clkSrc);
-uint32  RngClkGetFreqHz();
+Exec RngClkSrcSelect(rngClkSrc_t clkSrc);
+uint32 RngClkGetFreqHz();
 
-void    PerClkEnable(hal::perId_t perId);
-void    PerClkDisable(hal::perId_t perId);
-State   PerClkState(hal::perId_t perId);
-uint32  PerClkGetFreqHz(hal::perId_t perId);
+void PerClkEnable(hal::perId_t perId);
+void PerClkDisable(hal::perId_t perId);
+State PerClkState(hal::perId_t perId);
+uint32 PerClkGetFreqHz(hal::perId_t perId);
 
 } // END OF NAMESPACE 'hal::clk'
 /******************************************************************************************************************************************

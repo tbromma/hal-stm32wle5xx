@@ -136,6 +136,26 @@ uint32 SysClkGetFreqHz(sysClk_t sysClk)
     return 0;
 }
 
+sysClkAll_t SysClkGetAll()
+{
+    sysClkAll_t sysClk;
+    sysClk.lsiFreqHz = hal::clk::SysClkGetFreqHz(hal::clk::SYSCLK_LSI);
+    sysClk.lseFreqHz = hal::clk::SysClkGetFreqHz(hal::clk::SYSCLK_LSE);
+    sysClk.hsi16FreqHz = hal::clk::SysClkGetFreqHz(hal::clk::SYSCLK_HSI16);
+    sysClk.hse32FreqHz = hal::clk::SysClkGetFreqHz(hal::clk::SYSCLK_HSE32);
+    sysClk.msiFreqHz = hal::clk::SysClkGetFreqHz(hal::clk::SYSCLK_MSI);
+    sysClk.pllPFreqHz = hal::clk::SysClkGetFreqHz(hal::clk::SYSCLK_PLLP);
+    sysClk.pllQFreqHz = hal::clk::SysClkGetFreqHz(hal::clk::SYSCLK_PLLQ);
+    sysClk.pllRFreqHz = hal::clk::SysClkGetFreqHz(hal::clk::SYSCLK_PLLR);
+    sysClk.hclk1FreqHz = hal::clk::SysClkGetFreqHz(hal::clk::SYSCLK_HCLK1);
+    sysClk.hclk3FreqHz = hal::clk::SysClkGetFreqHz(hal::clk::SYSCLK_HCLK3);
+    sysClk.pclk1FreqHz = hal::clk::SysClkGetFreqHz(hal::clk::SYSCLK_PCLK1);
+    sysClk.pclk2FreqHz = hal::clk::SysClkGetFreqHz(hal::clk::SYSCLK_PCLK2);
+    sysClk.pclk3FreqHz = hal::clk::SysClkGetFreqHz(hal::clk::SYSCLK_PCLK3);
+    sysClk.systickFreqHz = hal::clk::SysClkGetFreqHz(hal::clk::SYSCLK_SYSTICK);
+    return sysClk;
+}
+
 Exec LsiClkEnable()
 {
     if (REG_RCC->CSR.bit.LSION == true) {
