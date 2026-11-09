@@ -29,7 +29,7 @@
 
 #include "perRng.h"
 #include "regRng.h"
-#include "halTime.h"
+#include "halDelay.h"
 
 /******************************************************************************************************************************************
                                                            PRIVATE DEFINES & TYPES
